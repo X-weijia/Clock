@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clock</title>
+    <style>
+        /* 电子表 */
+    .box{
+        width: 600px;
+        height: 160px;
+        border: 2px solid red;
+        margin: 0 auto;
+        font-size: 30px;
+    }
+    #h{
+        line-height: 160px;
+        margin-left: 100px;
+    }
+    #m{
+        line-height: 160px;
+        margin-left: 50px;
+    }
+    #s{
+        line-height: 160px;
+        margin-left: 50px;
+    }
+    .box span{
+        color: aqua;
+        font-size: 60px;
+        font-weight: 600;
+    }
+        /* 圆表 */
+    .bg{
+        width: 400px;
+        height: 400px;
+        margin: 20px auto;
+        border-radius: 50%;
+        background: url(clock.jpg) no-repeat -65px -60px;
+        background-size: 540px 530px;
+        position: relative;
+    }
+    .h_z{
+        width: 6px;
+        height: 90px;
+        background-color: red;
+        position: absolute;
+        top: 113px;
+        left: 199px;
+        transform-origin:center bottom;
+    }
+    .m_z{
+        width: 4px;
+        height: 140px;
+        background-color:rgb(255, 123, 0);
+        position: absolute;
+        top: 63px;
+        left: 200px;
+        /* transform: rotate(60deg); */
+        transform-origin:center bottom;
+    }
+    .s_z{
+        width: 2px;
+        height: 160px;
+        background-color: blue;
+        position: absolute;
+        top: 43px;
+        left: 201px;
+        transform-origin:center bottom;
+    }
+    </style>
+</head>
+<body>
+    <!-- 电子表 -->
+    <div class="box">
+                <span id="h">17</span>时
+                <span id="m">30</span>分
+                <span id="s">32</span>秒
+    </div>
+
+
+    <!-- 圆表 -->
+    <div class="bg">
+        <div class="h_z"></div>
+        <div class="m_z"></div>
+        <div class="s_z"></div>
+    </div>
+</body>
+
+
+
+<script>
+        // 电子表
+function fn(){
+    let now = new Date;
+    let hdate = document.querySelector('#h');
+    let mdate = document.querySelector('#m');
+    let sdate = document.querySelector('#s');
+        hdate.innerText = now.getHours();
+        mdate.innerText = now.getMinutes();
+        sdate.innerText = now.getSeconds();
+}
+fn();
+setInterval(fn,1000);
+
+        //圆表
+function fn1() {
+    let now1 = new Date;
+    let h_z = document.querySelector('.h_z');
+    let m_z = document.querySelector('.m_z');
+    let s_z = document.querySelector('.s_z');
+        h = now1.getHours();
+        m = now1.getMinutes();
+        s = now1.getSeconds()
+        // console.log(s)
+        // console.log(m)
+        // console.log(h)
+        h_z.style =  `transform:rotate(${30*h+(1/15)*6*m}deg)`;
+        m_z.style =  `transform:rotate(${6*m+(1/60)*6*s}deg)`;
+        s_z.style =  `transform:rotate(${6*s}deg)`;
+        // console.log(6*s,6*m+(1/60)*6*s,30*h+(1/30)*6*m);
+}
+fn1();
+setInterval(fn1,1000);
+</script>
+</html>
